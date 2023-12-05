@@ -1,33 +1,73 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+package tests;
+
+import org.junit.jupiter.api.*;
+import pages.AutorizationPage;
 import pages.MainPage;
 
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-public class TestAuExam {
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    @BeforeEach
-    void setUp() {
-        open("https://xn--80afcdbalict6afooklqi5o.xn--p1ai/");
-    }
+public class TestAuExam extends BaseTests{
 
+
+    //@Test
+     //@DisplayName("Переход с главной страницы в авторизацию")
+    //void testOpenMainPage() {
+      //   new MainPage()
+    //.clickLogin();
+    //}
 
 
         @Test
-        @DisplayName("Открытие главной страницы и формы авторизации")
-    void testOpenMainPage() {
-
-            open("https://xn--80afcdbalict6afooklqi5o.xn--p1ai/");
-
-            new MainPage()
-                    .checkVisibleButtonLogin();
-
-
-
-
+        @DisplayName("Ввод валидного логина и пароля")
+         void test() {
+            new AutorizationPage()
+                    .inputPassword()
+                    .inputLogin()
+                    .clickLoginIn()
+                    .cheking();
         }
+         @Test
+         @DisplayName("Ввод невалидного пароля, валидного логина")
+         void testNegative() {
+            new AutorizationPage()
+                    .inputPasswordNegative()
+                    .inputLogin()
+                    .clickLoginIn()
+                    .checkErrorMessageVisible();
+             }
+         }
 
-}
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
